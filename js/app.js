@@ -54,10 +54,12 @@ function init() {
     msgEl.textContent = '';
     
     render();
-
+console.log(word)
 }
 
 function render() {
+
+
 
 }
 
@@ -88,18 +90,16 @@ function updateDisplay() {
             
             remiaingLivesEl.textContent = remainingLives;
         }
-
     });
-   
 }
 
 
 function gameStatus() {
-    if (gussedLetters.join('') === HiddenWord.join('') ){
+    if ( gussedLetters.join('') === HiddenWord.join('') ){
         win = true;
         msgEl.textContent = `you win 🚀!, the word is ${word}`;
 
-    } else {
+    } else if  (remainingLives <= 0){
         msgEl.textContent = `Game over, the word is ${word}`
     }
 
@@ -107,11 +107,12 @@ function gameStatus() {
 
 
  function resetGame() {
-    const buttons =document.querySelectorAll('.key-button');
+    const buttons = document.querySelectorAll('.key-button');
     buttons.forEach(btn =>{
         btn.disabled =false;
     })
     msgEl.textContent ='';
+    
 }
 
 init();
