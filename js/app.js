@@ -1,11 +1,17 @@
 /*-------------- Constants -------------*/
-const Words = ['space','planet','rocket','galaxy','Aliens']
+
+const Words = ['plasma','planet','rocket','galaxy','Aliens']
 
 /*---------- Variables (state) ---------*/
+
 let word;
+let randomWord;
+let gussedLetter;
+let remainingLives;
 let win;
 
 /*----- Cached Element References  -----*/
+
 const wordDisplayEL = document.querySelector(".word-display");
 const dashEl = document.querySelectorAll(".dash") 
 
@@ -13,25 +19,23 @@ const remiaingLivesEl = document.querySelector("#lives");
 const msgEl = document.querySelector("#message");
 
 const KybContainerEl = document.querySelector("#keyboard-container");
-const outputInput = document.querySelector("#output");
+const outputInput = document.querySelector(".output");
+
+const resetBtnEl = document.querySelector('#resetButton');
 
 /*-------------- Functions -------------*/
-
-// Spaceman / Wordle
-// Use Array.from() or split('') to break words into letters
-// Display underscores for unguessed letters
-// Store guesses in an array
-
 
 for(let i=65 ; i<= 90 ; i++){
     const char = String.fromCharCode(i);
     const button = document.createElement("button");
-
+    
     button.classList.add("key-button");
     button.textContent = char;
 
     button.addEventListener('click',()=>{
-        outputInput.valuse +=char;
+        handleMove(char);
+        outputInput.value +=char;
+        button.disabled = true;
     });
 
     KybContainerEl.appendChild(button);
@@ -39,37 +43,83 @@ for(let i=65 ; i<= 90 ; i++){
 
 
 function init() {
-    word = ['','','','','',''];
+    const randomWord = Words[Math.floor(Math.random()*Words.length)].toUpperCase();
+    HiddenWord = Array.from(randomWord);
+    gussedLetters = Array(HiddenWord.length).fill('');
+    remainingLives = 6;
     win = false;
+    word = HiddenWord.join((''));
 
-
+    remiaingLivesEl.textContent = remainingLives;
+    msgEl.textContent = '';
+    
     render();
 }
 
 function render() {
 
-
+   
 }
 
-function updatetDisplay() {
-    word.forEach((value,index) => {
+
+function updateDisplay() {
+    HiddenWord.forEach((value,index) => {
         let dash = dashEl[index];
 
         if( value === ''){
-            word.textContent = value;
+            dash.textContent = '__';
+        } else{
+            dash.textContent = value;
         }
+
     });
+    checkGussedLetters();
 }
-updatetDisplay()
 
 
+function checkGussedLetters(letter) {
+    let correctGuss = false;
+
+   HiddenWord.forEach((char,index) => {
+        if ( char === letter){
+            gussedLetters[index]= letter;
+            correctGuss = true;
+
+        } else {
+            remainingLives-- ;
+        }
+
+})
+}
+
+function resetGame() {
+    const buttons =document.querySelectorAll('.key-button');
+    buttons.forEach(btn =>{
+        btn.disabled =false;
+    })
+}
+   
+
+function gameStatus() {
+    if (gussedLetters.join('') === HiddenWord.join('') ){
+        win = true;
+        msgEl.textContent = "you win!";
+
+    } else {
+        msgEl.textContent = `Game over, the word is ${word}`
+    }
+
+}
+
+init();
 
 /*----------- Event Listeners ----------*/
-outputInput.addEventListener('click',init)
 
-const handleMove = (event)=>{
-
-
+function handleMove(letter){
+    checkGussedLetters(letter);
     render();
+    gameStatus();
 }
 
+
+resetBtnEl.addEventListener('click', resetGame);

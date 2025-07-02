@@ -1,12 +1,4 @@
 body {
-    /* background-color: #606060;
-    color: rgb(241, 241, 241);
-    padding: 100px;
-    margin: auto;
-    justify-content: center;
-    align-items: center; */
-
-    min-height: 100vh;
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -17,26 +9,46 @@ body {
 
 }
 
+img {
+    width: 170px ;
+    height: 170px;
+    align-self: flex-end;
+}
+
+
+
 .word-display {
     display: flex;
-    flex-wrap: wrap;
-    width: 325px;
-    min-height: 150px;
+    justify-content: center;
+    width: 320px;
+    min-height: 65px;
+    align-self: center;
+    margin-right: 100px;
 }
-/* 
+
 .dash {
-  width: 30%;
+  width: 15%;
   aspect-ratio: 1/1;
-  border: 3px solid rgb(209, 207, 207);
-  font-size: 64px;
+  border: 3px solid #999;
+  font-size: 40px;
   text-align: center;
-}   */
+  line-height: 1;
+  margin: 4px;
+  justify-content: center;
+}  
 
 #resetButton {
-margin-left: 250px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
 }
 
-#output {
+.output {
     width: 80%;
     max-width: 500px;
     padding: 10px;
@@ -48,14 +60,13 @@ margin-left: 250px;
 
 #keyboard-container {
     display: grid;
-    grid-template-columns: 60px 60px 60px 60px 60px 60px 60px 60px 60px; 
-    
-    gap: 10px;
+    grid-template-columns: repeat(9, 40px); 
+    gap: 15px;
     padding: 20px;
     background-color: #fff ;
-    border-radius: black;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgb(0,0,0,0,1);
+    box-shadow: 0 4px 8px rgb(0,0,0,0.1);
+    justify-content: center;
 }
 
 .key-button {
@@ -75,8 +86,7 @@ margin-left: 250px;
 
 }
 
-
-.keyboard:hover {
+.key-button:hover {
     background-color: #0056b3;
 
 }
