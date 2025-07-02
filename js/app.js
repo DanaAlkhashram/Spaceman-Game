@@ -21,7 +21,7 @@ const msgEl = document.querySelector("#message");
 const KybContainerEl = document.querySelector("#keyboard-container");
 const outputInput = document.querySelector(".output");
 
-const resetBtnEl = document.querySelector('#resetButton');
+const resetBtnEl = document.querySelector("#resetButton");
 
 /*-------------- Functions -------------*/
 
@@ -54,61 +54,64 @@ function init() {
     msgEl.textContent = '';
     
     render();
+
 }
 
 function render() {
 
-   
 }
-
-
-function updateDisplay() {
-    HiddenWord.forEach((value,index) => {
-        let dash = dashEl[index];
-
-        if( value === ''){
-            dash.textContent = '__';
-        } else{
-            dash.textContent = value;
-        }
-
-    });
-    checkGussedLetters();
-}
-
 
 function checkGussedLetters(letter) {
     let correctGuss = false;
 
-   HiddenWord.forEach((char,index) => {
+    HiddenWord.forEach((char,index) => {
         if ( char === letter){
             gussedLetters[index]= letter;
             correctGuss = true;
+        }
+        });
 
+    if (!correctGuss){
+           remainingLives-- ;
+        }
+    updateDisplay();
+
+}
+
+function updateDisplay() {
+
+    gussedLetters.forEach((value,index) => {
+
+        if( word[index] === gussedLetters[index]){
+            dashEl[index].textContent = value;
         } else {
-            remainingLives-- ;
+            
+            remiaingLivesEl.textContent = remainingLives;
         }
 
-})
+    });
+   
 }
 
-function resetGame() {
-    const buttons =document.querySelectorAll('.key-button');
-    buttons.forEach(btn =>{
-        btn.disabled =false;
-    })
-}
-   
 
 function gameStatus() {
     if (gussedLetters.join('') === HiddenWord.join('') ){
         win = true;
-        msgEl.textContent = "you win!";
+        msgEl.textContent = `you win 🚀!, the word is ${word}`;
 
     } else {
         msgEl.textContent = `Game over, the word is ${word}`
     }
 
+}
+
+
+ function resetGame() {
+    const buttons =document.querySelectorAll('.key-button');
+    buttons.forEach(btn =>{
+        btn.disabled =false;
+    })
+    msgEl.textContent ='';
 }
 
 init();
@@ -120,6 +123,5 @@ function handleMove(letter){
     render();
     gameStatus();
 }
-
 
 resetBtnEl.addEventListener('click', resetGame);
