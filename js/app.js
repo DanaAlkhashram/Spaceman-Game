@@ -1,19 +1,17 @@
 /*-------------- Constants -------------*/
-
-const Words = ['plasma','planet','rocket','galaxy','Aliens']
+const Words = ['plasma', 'planet', 'rocket', 'galaxy', 'Aliens']
 
 /*---------- Variables (state) ---------*/
-
 let word;
 let randomWord;
+let hiddenWord;
 let gussedLetter;
 let remainingLives;
 let win;
 
 /*----- Cached Element References  -----*/
-
 const wordDisplayEL = document.querySelector(".word-display");
-const dashEl = document.querySelectorAll(".dash") 
+const dashEl = document.querySelectorAll(".dash")
 
 const remiaingLivesEl = document.querySelector("#lives");
 const msgEl = document.querySelector("#message");
@@ -25,104 +23,114 @@ const resetBtnEl = document.querySelector("#resetButton");
 
 /*-------------- Functions -------------*/
 
-for(let i=65 ; i<= 90 ; i++){
+// Generate alphabet keyboard buttons 
+for (let i = 65; i <= 90; i++) {
     const char = String.fromCharCode(i);
     const button = document.createElement("button");
-    
+
     button.classList.add("key-button");
     button.textContent = char;
 
-    button.addEventListener('click',()=>{
+    button.addEventListener('click', () => {
         handleMove(char);
-        outputInput.value +=char;
+        outputInput.value += char;
         button.disabled = true;
     });
 
     KybContainerEl.appendChild(button);
 }
 
-
+// initialize the game 
 function init() {
-    const randomWord = Words[Math.floor(Math.random()*Words.length)].toUpperCase();
-    HiddenWord = Array.from(randomWord);
-    gussedLetters = Array(HiddenWord.length).fill('');
+    randomWord = Words[Math.floor(Math.random() * Words.length)].toUpperCase();
+    hiddenWord = Array.from(randomWord);
+    gussedLetters = Array(hiddenWord.length).fill('');
+
+    const randomIndex = Math.floor(Math.random() * hiddenWord.length);
+    gussedLetters[randomIndex] = hiddenWord[randomIndex];
+
     remainingLives = 6;
     win = false;
-    word = HiddenWord.join((''));
+    word = hiddenWord.join((''));
 
     remiaingLivesEl.textContent = remainingLives;
     msgEl.textContent = '';
-    
+
     render();
-console.log(word)
+    console.log(word)
 }
 
-function render() {
-
-
-
-}
-
-function checkGussedLetters(letter) {
-    let correctGuss = false;
-
-    HiddenWord.forEach((char,index) => {
-        if ( char === letter){
-            gussedLetters[index]= letter;
-            correctGuss = true;
-        }
-        });
-
-    if (!correctGuss){
-           remainingLives-- ;
-        }
-    updateDisplay();
-
-}
-
-function updateDisplay() {
-
-    gussedLetters.forEach((value,index) => {
-
-        if( word[index] === gussedLetters[index]){
-            dashEl[index].textContent = value;
-        } else {
-            
-            remiaingLivesEl.textContent = remainingLives;
-        }
-    });
-}
-
-
-function gameStatus() {
-    if ( gussedLetters.join('') === HiddenWord.join('') ){
-        win = true;
-        msgEl.textContent = `you win 🚀!, the word is ${word}`;
-
-    } else if  (remainingLives <= 0){
-        msgEl.textContent = `Game over, the word is ${word}`
-    }
-
-}
-
-
- function resetGame() {
-    const buttons = document.querySelectorAll('.key-button');
-    buttons.forEach(btn =>{
-        btn.disabled =false;
-    })
-    msgEl.textContent ='';
-    
-}
-
-init();
-
-/*----------- Event Listeners ----------*/
-
-function handleMove(letter){
+// when the letter clicked, handle the guess and update guessed letters
+function handleMove(letter) {
     checkGussedLetters(letter);
     render();
     gameStatus();
 }
 
+// wcheck if the clicked letter is in the word and update gussed letters
+function checkGussedLetters(letter) {
+    let correctGuss = false;
+
+    hiddenWord.forEach((char, index) => {
+        if (char === letter) {
+            gussedLetters[index] = letter;
+            correctGuss = true;
+        }
+    });
+
+    if (!correctGuss) {
+        remainingLives--;
+    }
+    updateDisplay();
+
+}
+
+// render the current state of the gussed word and remaining lives
+function render() {
+    updateDisplay();
+}
+
+
+// update the display with gussed letters and remaining lives
+function updateDisplay() {
+
+    gussedLetters.forEach((value, index) => {
+        if (value) {
+            dashEl[index].textContent = value;
+        } else {
+            dashEl[index].textContent = " ";
+        }
+    });
+    remiaingLivesEl.textContent = remainingLives;
+
+}
+
+// check if the player gussed the right word or not
+function gameStatus() {
+    if (gussedLetters.join('') === hiddenWord.join('')) {
+        win = true;
+        msgEl.textContent = `you win 🚀, the word is ${word}`;
+
+    } else if (remainingLives <= 0) {
+        msgEl.textContent = `Game over, the word is ${word}`
+    }
+
+}
+
+// reset the game to start over and play again when the button clicked
+function resetGame() {
+    const buttons = document.querySelectorAll('.key-button');
+    buttons.forEach(btn => {
+        btn.disabled = false;
+    })
+    msgEl.textContent = '';
+
+    init();
+}
+
+
+    init();
+
+/*----------- Event Listeners ----------*/
 resetBtnEl.addEventListener('click', resetGame);
+
