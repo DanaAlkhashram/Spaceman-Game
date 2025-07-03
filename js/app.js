@@ -17,7 +17,7 @@ const remiaingLivesEl = document.querySelector("#lives");
 const msgEl = document.querySelector("#message");
 
 const KybContainerEl = document.querySelector("#keyboard-container");
-const outputInput = document.querySelector(".output");
+const outputEl = document.querySelector(".output");
 
 const resetBtnEl = document.querySelector("#resetButton");
 
@@ -33,7 +33,7 @@ for (let i = 65; i <= 90; i++) {
 
     button.addEventListener('click', () => {
         handleMove(char);
-        outputInput.value += char;
+        outputEl.value += char;
         button.disabled = true;
 
 
@@ -59,7 +59,6 @@ function init() {
     msgEl.textContent = '';
 
     render();
-    console.log(word)
 }
 
 // when the letter clicked, handle the guess and update guessed letters
@@ -104,12 +103,12 @@ function updateDisplay() {
             dashEl[index].textContent = " ";
         }
     });
-    if (remainingLives >= 0){
+    if (remainingLives >= 0) {
         remiaingLivesEl.textContent = remainingLives;
     } else {
         return;
     }
-    
+
 
 }
 
@@ -136,8 +135,7 @@ function resetGame() {
     init();
 }
 
-
-    init();
+init();
 
 /*----------- Event Listeners ----------*/
 resetBtnEl.addEventListener('click', resetGame);

@@ -6,66 +6,86 @@ body {
     justify-content: center;
     min-height: 100vh;
     background-color: #f0f0f0;
+    position: relative;
+;
+
+
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 
 img {
-    width: 450px ;
+    width: 450px;
     height: 450px;
-    margin-left: 500px;
+    /* margin-left: 1000px; */
 }
 
 .word-display {
     display: flex;
     justify-content: center;
     width: 320px;
-    min-height: 65px;
+    min-height: 20px;
     align-self: center;
     margin-right: 100px;
 }
 
 .dash {
-  width: 15%;
-  aspect-ratio: 1/1;
-  border: 3px solid #999;
-  font-size: 40px;
-  text-align: center;
-  line-height: 1;
-  margin: 4px;
-  justify-content: center;
-}  
+    width: 15%;
+    aspect-ratio: 1/1;
+    border: 3px solid #999;
+    font-size: 40px;
+    text-align: center;
+    line-height: 1;
+    margin: 4px;
+    justify-content: center;
+}
 
 #resetButton {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 18px;
-  border: none;
-  border-radius: 10px;
-  background-color: #333;
-  color: white;
-  cursor: pointer;
+    height: 3em;
+    width: 8em;
+    border: none;
+    border-radius: 10em;
+    background: #016DD9;
+    font-size: 17px;
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+
 }
+/* 
+#resetButton:hover {
+    background-color: #7d9ab9;
+    transition: background-color 0.7s;
+
+} */
 
 .output {
     width: 80%;
-    max-width: 500px;
-    padding: 10px;
+    max-width: 600px;
+    padding: 15px;
     font-size: 24px;
     margin-bottom: 20px;
-    border: 2px solid burlywood;
+    border: 2px solid rgb(255, 255, 255);
     border-radius: 20px;
 }
 
 #keyboard-container {
     display: grid;
-    grid-template-columns: repeat(9, 45px); 
-    gap: 15px;
+    grid-template-columns: repeat(9, 45px);
+    gap: 23px;
     padding: 25px;
-    /* background-color: #fff ; */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgb(0,0,0,0.1);
-    justify-content: center;
+    box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
+    
 }
+
 
 .key-button {
     font-style: arial;
@@ -75,18 +95,18 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #e570e3;
-    background-color: "+If(Selected, "#ffffff","#3851e1")"; 
+    position: relative;
+    background-color: #ce77cd;
+    /* change propertise when it clicked */
+    background-color: "+If(Selected, " #da3fc0"," #ffffff")";
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.7s;
+    transition: background-color 0.3s;
 }
 
 .key-button:hover {
     background-color: #0056b3;
     transition: background-color 0.7s;
-    
+
 }
-
-
