@@ -10,12 +10,10 @@ body {
 }
 
 img {
-    width: 170px ;
-    height: 170px;
-    align-self: flex-end;
+    width: 450px ;
+    height: 450px;
+    margin-left: 500px;
 }
-
-
 
 .word-display {
     display: flex;
@@ -60,10 +58,10 @@ img {
 
 #keyboard-container {
     display: grid;
-    grid-template-columns: repeat(9, 40px); 
+    grid-template-columns: repeat(9, 45px); 
     gap: 15px;
-    padding: 20px;
-    background-color: #fff ;
+    padding: 25px;
+    /* background-color: #fff ; */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgb(0,0,0,0.1);
     justify-content: center;
@@ -77,19 +75,18 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #030405;
-    color: white;
+    background-color: #e570e3;
+    background-color: "+If(Selected, "#ffffff","#3851e1")"; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s;
-
+    transition: background-color 0.7s;
 }
 
 .key-button:hover {
     background-color: #0056b3;
-
+    transition: background-color 0.7s;
+    
 }
-
 
 

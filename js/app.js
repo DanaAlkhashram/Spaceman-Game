@@ -35,6 +35,8 @@ for (let i = 65; i <= 90; i++) {
         handleMove(char);
         outputInput.value += char;
         button.disabled = true;
+
+
     });
 
     KybContainerEl.appendChild(button);
@@ -88,6 +90,7 @@ function checkGussedLetters(letter) {
 // render the current state of the gussed word and remaining lives
 function render() {
     updateDisplay();
+
 }
 
 
@@ -101,7 +104,12 @@ function updateDisplay() {
             dashEl[index].textContent = " ";
         }
     });
-    remiaingLivesEl.textContent = remainingLives;
+    if (remainingLives >= 0){
+        remiaingLivesEl.textContent = remainingLives;
+    } else {
+        return;
+    }
+    
 
 }
 
