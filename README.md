@@ -9,7 +9,7 @@ The player guess the hidden word by selecting letters one at a time. Each wrong 
 
 ## 🚀 Getting Started
 
-👉 **Play it here:** [https://danaalkhashram.github.io/js-rock-paper-scissors/](https://danaalkhashram.github.io/js-rock-paper-scissors/)
+👉 **Play it here:** [https://danaalkhashram.github.io/Spaceman-Game/](https://danaalkhashram.github.io/Spaceman-Game/)
 
 👉 **Planning Materials:**
 - [User Stories](./planning/user-stories.md)
@@ -30,4 +30,9 @@ The player guess the hidden word by selecting letters one at a time. Each wrong 
 
 ## 📚 Attributions
 
-- [Icons from Font Awesome](https://fontawesome.com/)
+- Icons provided by [Font Awesome](https://fontawesome.com/)
+
+## 🚧 Next Steps
+
+- Add sound effects  
+- Add animations
