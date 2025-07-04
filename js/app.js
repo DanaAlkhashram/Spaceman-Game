@@ -1,11 +1,12 @@
 /*-------------- Constants -------------*/
+// list of 6 letters words
 const Words = ['plasma', 'planet', 'rocket', 'galaxy', 'Aliens']
 
 /*---------- Variables (state) ---------*/
 let word;
 let randomWord;
 let hiddenWord;
-let gussedLetter;
+let guessedLetters;
 let remainingLives;
 let win;
 
@@ -13,7 +14,7 @@ let win;
 const wordDisplayEL = document.querySelector(".word-display");
 const dashEl = document.querySelectorAll(".dash")
 
-const remiaingLivesEl = document.querySelector("#lives");
+const remainingLivesEl = document.querySelector("#lives");
 const msgEl = document.querySelector("#message");
 
 const KybContainerEl = document.querySelector("#keyboard-container");
@@ -24,6 +25,11 @@ const resetBtnEl = document.querySelector("#resetButton");
 /*-------------- Functions -------------*/
 
 // Generate alphabet keyboard buttons 
+// For each letter A-Z
+    // Create nutton 
+    // set its value 
+    // add event listener to handle letter click 
+    // disable button after click
 for (let i = 65; i <= 90; i++) {
     const char = String.fromCharCode(i);
     const button = document.createElement("button");
@@ -42,26 +48,38 @@ for (let i = 65; i <= 90; i++) {
     KybContainerEl.appendChild(button);
 }
 
-// initialize the game 
+// Initialize the game  
+// - Choose random word from the array
+// - Convert the word to Uppercase and into array of letters
+// - Fill guessed letters with empty srings
+// - Reveal on erandom letter to start 
+// - Set remaining lives to 6
+// - Clear message 
 function init() {
     randomWord = Words[Math.floor(Math.random() * Words.length)].toUpperCase();
     hiddenWord = Array.from(randomWord);
-    gussedLetters = Array(hiddenWord.length).fill('');
+    guessedLetters = Array(hiddenWord.length).fill('');
 
     const randomIndex = Math.floor(Math.random() * hiddenWord.length);
-    gussedLetters[randomIndex] = hiddenWord[randomIndex];
+    guessedLetters[randomIndex] = hiddenWord[randomIndex];
 
     remainingLives = 6;
     win = false;
     word = hiddenWord.join((''));
 
-    remiaingLivesEl.textContent = remainingLives;
+    remainingLivesEl.textContent = remainingLives;
     msgEl.textContent = '';
 
     render();
 }
 
-// when the letter clicked, handle the guess and update guessed letters
+// - When the letter clicked, handle the guess and update guessed letters
+// - Check the gussed letter is in the word:
+    // If correct, fill it in the crorrect positions
+    // If false, reduse life
+// - Disable the clicked button
+// - Update the screen
+// - Check win or lose 
 function handleMove(letter) {
     checkGussedLetters(letter);
     render();
@@ -70,16 +88,16 @@ function handleMove(letter) {
 
 // wcheck if the clicked letter is in the word and update gussed letters
 function checkGussedLetters(letter) {
-    let correctGuss = false;
+    let correctGuess = false;
 
     hiddenWord.forEach((char, index) => {
         if (char === letter) {
-            gussedLetters[index] = letter;
-            correctGuss = true;
+            guessedLetters[index] = letter;
+            correctGuess = true;
         }
     });
 
-    if (!correctGuss) {
+    if (!correctGuess) {
         remainingLives--;
     }
     updateDisplay();
@@ -96,7 +114,7 @@ function render() {
 // update the display with gussed letters and remaining lives
 function updateDisplay() {
 
-    gussedLetters.forEach((value, index) => {
+    guessedLetters.forEach((value, index) => {
         if (value) {
             dashEl[index].textContent = value;
         } else {
@@ -104,7 +122,7 @@ function updateDisplay() {
         }
     });
     if (remainingLives >= 0) {
-        remiaingLivesEl.textContent = remainingLives;
+        remainingLivesEl.textContent = remainingLives;
     } else {
         return;
     }
@@ -113,13 +131,16 @@ function updateDisplay() {
 }
 
 // check if the player gussed the right word or not
+// Display the approriate message
 function gameStatus() {
-    if (gussedLetters.join('') === hiddenWord.join('')) {
+    if (guessedLetters.join('') === hiddenWord.join('')) {
         win = true;
         msgEl.textContent = `you win 🚀, the word is ${word}`;
 
+
     } else if (remainingLives <= 0) {
         msgEl.textContent = `Game over, the word is ${word}`
+
     }
 
 }
