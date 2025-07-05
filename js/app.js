@@ -12,7 +12,7 @@ let win;
 
 /*----- Cached Element References  -----*/
 const wordDisplayEL = document.querySelector(".word-display");
-const dashEl = document.querySelectorAll(".dash")
+const dashEls = document.querySelectorAll(".dash")
 
 const remainingLivesEl = document.querySelector("#lives");
 const msgEl = document.querySelector("#message");
@@ -26,7 +26,7 @@ const resetBtnEl = document.querySelector("#resetButton");
 
 // Generate alphabet keyboard buttons 
 // For each letter A-Z
-    // Create nutton 
+    // Create button 
     // set its value 
     // add event listener to handle letter click 
     // disable button after click
@@ -51,7 +51,7 @@ for (let i = 65; i <= 90; i++) {
 // Initialize the game  
 // - Choose random word from the array
 // - Convert the word to Uppercase and into array of letters
-// - Fill guessed letters with empty srings
+// - Fill guessed letters with empty strings
 // - Reveal on erandom letter to start 
 // - Set remaining lives to 6
 // - Clear message 
@@ -75,19 +75,19 @@ function init() {
 
 // - When the letter clicked, handle the guess and update guessed letters
 // - Check the gussed letter is in the word:
-    // If correct, fill it in the crorrect positions
-    // If false, reduse life
+    // If correct, fill it in the correct positions
+    // If false, reduce life
 // - Disable the clicked button
 // - Update the screen
 // - Check win or lose 
 function handleMove(letter) {
-    checkGussedLetters(letter);
+    checkGuessedLetters(letter);
     render();
     gameStatus();
 }
 
-// wcheck if the clicked letter is in the word and update gussed letters
-function checkGussedLetters(letter) {
+// Check if the clicked letter is in the word and update guessed letters
+function checkGuessedLetters(letter) {
     let correctGuess = false;
 
     hiddenWord.forEach((char, index) => {
@@ -104,14 +104,14 @@ function checkGussedLetters(letter) {
 
 }
 
-// render the current state of the gussed word and remaining lives
+// render the current state of the guessed word and remaining lives
 function render() {
     updateDisplay();
 
 }
 
 
-// update the display with gussed letters and remaining lives
+// update the display with guessed letters and remaining lives
 function updateDisplay() {
 
     guessedLetters.forEach((value, index) => {
@@ -130,8 +130,8 @@ function updateDisplay() {
 
 }
 
-// check if the player gussed the right word or not
-// Display the approriate message
+// check if the player guessed the right word or not
+// Display the appropriate message
 function gameStatus() {
     if (guessedLetters.join('') === hiddenWord.join('')) {
         win = true;

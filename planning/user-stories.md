@@ -1,4 +1,5 @@
-## MVP USER STORIES
+## ✅ MVP User Stories
+
 1. As a user I want to see the keyboards buttons displayed ,so I can chose one letter at a time.
 2. As a user, I want to see a space theme related to the game, so I know I’m in the right place.
 3. As a user, I want to see how many chances left for me ,so I can manage my choices.
