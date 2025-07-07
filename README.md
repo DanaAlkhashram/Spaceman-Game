@@ -1,6 +1,6 @@
 # 🔭 Spaceman Game 🚀 
 
-![Game Screenshot]()./img/screenshot.png)
+![Game Screenshot]()(img/screenshot.png)
 
 ## 🕹️ Description
 
