@@ -3,7 +3,6 @@ body {
     background: url('../img/stars.gif') no-repeat center center fixed;
     background-size: cover;
     color: #ffffff;
-    text-align: center;
     padding: 20px;
     margin: 0;
     text-align: center;
@@ -40,7 +39,7 @@ header p {
     padding: 25px;
     background: rgb(20, 20, 40,0.85);
     border-radius: 20px;
-    box-shadow: 0 8px 20 px rgb(0, 0, 0, 0.6);
+    box-shadow: 0 8px 20px rgb(0, 0, 0, 0.6);
     gap: 30px;
 }
 
