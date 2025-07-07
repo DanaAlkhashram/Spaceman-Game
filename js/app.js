@@ -116,9 +116,9 @@ function updateDisplay() {
 
     guessedLetters.forEach((value, index) => {
         if (value) {
-            dashEl[index].textContent = value;
+            dashEls[index].textContent = value;
         } else {
-            dashEl[index].textContent = " ";
+            dashEls[index].textContent = " ";
         }
     });
     if (remainingLives >= 0) {
