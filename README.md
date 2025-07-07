@@ -1,6 +1,6 @@
 # 🔭 Spaceman Game 🚀 
 
-![Game Screenshot](img/screenshot.png)
+![Game Screenshot](img/Screenshot.png)
 
 ## 🕹️ Description
 
@@ -15,7 +15,7 @@ This is a simple Spaceman game made with HTML, CSS, and JavaScript. The player g
 - [Wireframe](./planning/wireframe.png)
 
 ### 🎮 How to Play
-1. Open the link to the game.
+1. Open the link to the game.g
 2. Click letters on the keyboard to guess the hidden word.
 3. Correct guesses reveal letters in the words.
 4. Wrong guesses reduce the remaining lives!
